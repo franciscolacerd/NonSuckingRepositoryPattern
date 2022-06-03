@@ -1,0 +1,12 @@
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Application\bin\Debug\net6.0\NSRP.Application.deps.json
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Application\bin\Debug\net6.0\NSRP.Application.dll
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Application\bin\Debug\net6.0\NSRP.Application.pdb
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Application\obj\Debug\net6.0\NSRP.Application.csproj.AssemblyReference.cache
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Application\obj\Debug\net6.0\NSRP.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Application\obj\Debug\net6.0\NSRP.Application.AssemblyInfoInputs.cache
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Application\obj\Debug\net6.0\NSRP.Application.AssemblyInfo.cs
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Application\obj\Debug\net6.0\NSRP.Application.csproj.CoreCompileInputs.cache
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Application\obj\Debug\net6.0\NSRP.Application.dll
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Application\obj\Debug\net6.0\refint\NSRP.Application.dll
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Application\obj\Debug\net6.0\NSRP.Application.pdb
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Application\obj\Debug\net6.0\ref\NSRP.Application.dll

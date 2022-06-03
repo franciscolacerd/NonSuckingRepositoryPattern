@@ -1,0 +1,15 @@
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\bin\Debug\net6.0\NSRP.Persistence.deps.json
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\bin\Debug\net6.0\NSRP.Persistence.dll
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\bin\Debug\net6.0\NSRP.Persistence.pdb
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\obj\Debug\net6.0\NSRP.Persistence.csproj.AssemblyReference.cache
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\obj\Debug\net6.0\NSRP.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\obj\Debug\net6.0\NSRP.Persistence.AssemblyInfoInputs.cache
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\obj\Debug\net6.0\NSRP.Persistence.AssemblyInfo.cs
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\obj\Debug\net6.0\NSRP.Persistence.csproj.CoreCompileInputs.cache
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\obj\Debug\net6.0\NSRP.Persistence.dll
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\obj\Debug\net6.0\refint\NSRP.Persistence.dll
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\obj\Debug\net6.0\NSRP.Persistence.pdb
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\obj\Debug\net6.0\ref\NSRP.Persistence.dll
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\bin\Debug\net6.0\NSRP.Application.dll
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\bin\Debug\net6.0\NSRP.Application.pdb
+C:\FLACERDA\Utils\NSRP\src\NonSuckingRepositoryPattern.Solution\NSRP.Persistence\obj\Debug\net6.0\NSRP.Persistence.csproj.CopyComplete
