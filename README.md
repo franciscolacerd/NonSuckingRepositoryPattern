@@ -7,3 +7,5 @@ How to use?
 Copy the code and experiment.
 
 Documentation in the near future.
+
+Tests in the near future.
