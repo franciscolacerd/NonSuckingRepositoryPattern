@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NSRP.Application\NSRP.Application.csproj" />
+    <ProjectReference Include="..\NSRP.Domain\NSRP.Domain.csproj" />
   </ItemGroup>
 
 </Project>

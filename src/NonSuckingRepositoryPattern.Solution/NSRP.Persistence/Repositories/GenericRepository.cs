@@ -2,21 +2,22 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using NSRP.Application.Contracts.Persistence;
-using NSRP.Application.DTOs.Common;
 using NSRP.Application.Extensions;
 using NSRP.Application.Models.Persistence;
+using NSRP.Domain.Common;
+using NSRP.Persistence.Repositories.Common;
 using System.Linq.Expressions;
 
 namespace NSRP.Persistence.Repositories
 {
-    public class GenericRepository<TEntity, TDto> : IGenericRepository<TEntity, TDto>
-        where TEntity : class, IIdentity
+    public class GenericRepository<TEntity, TDto> : BaseRepository<TEntity, NsrpContext>, IGenericRepository<TEntity, TDto>
+        where TEntity : BaseDomainEntity
         where TDto : class
     {
         private readonly NsrpContext _dbContext;
         protected IMapper _mapper { get; }
 
-        public GenericRepository(NsrpContext dbContext, IMapper mapper)
+        public GenericRepository(NsrpContext dbContext, IMapper mapper) : base(dbContext)
         {
             _dbContext = dbContext;
             _mapper = mapper;
@@ -85,15 +86,7 @@ namespace NSRP.Persistence.Repositories
             Expression<Func<TEntity, bool>>? predicate = null,
             params Expression<Func<TEntity, object>>[]? includes)
         {
-            var dbSet = _dbContext.Set<TEntity>();
-
-            var _query = dbSet.AsNoTracking();
-
-            if (predicate != null)
-                _query = _query.Where(predicate);
-
-            if (includes != null)
-                _query = includes.Aggregate(_query, (current, include) => current.Include(include));
+            var _query = SetFiltersToQuery(predicate, includes);
 
             return await _query
                  .ProjectTo<TDto>(_mapper.ConfigurationProvider)
@@ -114,21 +107,12 @@ namespace NSRP.Persistence.Repositories
             Expression<Func<TEntity, bool>>? predicate = null,
             params Expression<Func<TEntity, object>>[]? includes)
         {
-            var dbSet = _dbContext.Set<TEntity>();
-
-            int skip = (page - 1) * pageSize;
-
-            var _query = dbSet.AsNoTracking();
-            if (predicate != null)
-                _query = _query.Where(predicate);
-
-            if (includes != null)
-                _query = includes.Aggregate(_query, (current, include) => current.Include(include));
+            var _query = SetFiltersToQuery(predicate, includes);
 
             var count = await _query.ProjectTo<TDto>(_mapper.ConfigurationProvider).CountAsync();
 
             var result = await _query
-                 .Skip(skip)
+                 .Skip(Skip(page, pageSize))
                  .Take(pageSize)
                  .ProjectTo<TDto>(_mapper.ConfigurationProvider)
                  .ToListAsync();
@@ -154,26 +138,17 @@ namespace NSRP.Persistence.Repositories
             Expression<Func<TEntity, bool>>? predicate = null,
             params Expression<Func<TEntity, object>>[] includes)
         {
-            var dbSet = _dbContext.Set<TEntity>();
-
-            int skip = (page - 1) * pageSize;
-
-            var _query = dbSet.AsNoTracking();
-            if (predicate != null)
-                _query = _query.Where(predicate);
-
-            if (includes != null)
-                _query = includes.Aggregate(_query, (current, include) => current.Include(include));
-
-            IReadOnlyList<TDto>? result = null;
+            var _query = SetFiltersToQuery(predicate, includes);
 
             var count = await _query.ProjectTo<TDto>(_mapper.ConfigurationProvider).CountAsync();
+
+            IReadOnlyList<TDto>? result = null;
 
             if (string.IsNullOrEmpty(sortColumn))
             {
                 result = await _query
                  .OrderByDescending("CreatedDateUtc")
-                 .Skip(skip)
+                 .Skip(Skip(page, pageSize))
                  .Take(pageSize)
                  .ProjectTo<TDto>(_mapper.ConfigurationProvider)
                  .ToListAsync();
@@ -185,7 +160,7 @@ namespace NSRP.Persistence.Repositories
             {
                 result = await _query
                  .OrderByDescending(sortColumn.ToUpperCaseFirst())
-                 .Skip(skip)
+                 .Skip(Skip(page, pageSize))
                  .Take(pageSize)
                  .ProjectTo<TDto>(_mapper.ConfigurationProvider)
                  .ToListAsync();
@@ -196,7 +171,7 @@ namespace NSRP.Persistence.Repositories
             {
                 result = await _query
                  .OrderBy(sortColumn.ToUpperCaseFirst())
-                 .Skip(skip)
+                 .Skip(Skip(page, pageSize))
                  .Take(pageSize)
                  .ProjectTo<TDto>(_mapper.ConfigurationProvider)
                  .ToListAsync();
@@ -214,14 +189,7 @@ namespace NSRP.Persistence.Repositories
             Expression<Func<TEntity, bool>>? predicate = null,
             params Expression<Func<TEntity, object>>[]? includes)
         {
-            var dbSet = _dbContext.Set<TEntity>();
-
-            var _query = dbSet.AsNoTracking();
-            if (predicate != null)
-                _query = _query.Where(predicate);
-
-            if (includes != null)
-                _query = includes.Aggregate(_query, (current, include) => current.Include(include));
+            var _query = SetFiltersToQuery(predicate, includes);
 
             return await _query
                  .ProjectTo<TDto?>(_mapper.ConfigurationProvider)
