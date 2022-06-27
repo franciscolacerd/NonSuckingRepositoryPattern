@@ -1,4 +1,4 @@
-﻿using NSRP.Application.Models.Persistence;
+﻿using NSRP.Application.Models.Pagination;
 using System.Linq.Expressions;
 
 namespace NSRP.Application.Contracts.Persistence
@@ -8,50 +8,42 @@ namespace NSRP.Application.Contracts.Persistence
         where TDto : class
     {
 
-        Task<TDto?> AddAsync(TEntity entity);
+        Task<TEntity> AddAsync(TEntity entity);
 
         Task DeleteAsync(TEntity entity);
-        Task<IReadOnlyList<TDto>> GetAllAsync();
+        Task<IReadOnlyList<TEntity>> GetAllAsync();
 
-        Task<TDto?> GetByIdAsync(int id);
+        Task<TEntity?> GetByIdAsync(int id);
 
-        Task<IReadOnlyList<TDto>> QueryAsync(Expression<Func<TEntity, bool>>? predicate = null);
+        Task UpdateAsync(TEntity entity);
 
-        Task<IReadOnlyList<TDto>> QueryAsync(
+        Task<IReadOnlyList<TEntity>> QueryAsync(Expression<Func<TEntity, bool>>? predicate = null);
+
+        Task<IReadOnlyList<TEntity>> QueryAsync(
             Expression<Func<TEntity, bool>>? predicate = null,
             params Expression<Func<TEntity, object>>[]? includes);
 
-        Task<PagedList<TDto>> QueryAsync(
+        Task<PagedResult<TDto>> QueryAsync(
             int page,
             int pageSize,
             Expression<Func<TEntity, bool>>? predicate = null);
 
-        Task<PagedList<TDto>> QueryAsync(
+        Task<PagedResult<TDto>> QueryAsync(
             int page,
             int pageSize,
             Expression<Func<TEntity, bool>>? predicate = null,
             params Expression<Func<TEntity, object>>[]? includes);
 
-        Task<PagedList<TDto>> QueryAsync(
-           int page,
-           int pageSize,
-           string sortColumn,
-           string sortDirection,
-           Expression<Func<TEntity, bool>>? predicate = null);
-
-        Task<PagedList<TDto>> QueryAsync(
+        Task<PagedResult<TDto>> QueryAsync(
             int page,
             int pageSize,
-            string sortColumn,
-            string sortDirection,
             Expression<Func<TEntity, bool>>? predicate = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
             params Expression<Func<TEntity, object>>[] includes);
 
-        Task<TDto?> QueryFirstAsync(Expression<Func<TEntity, bool>>? predicate = null);
+        Task<TEntity?> QueryFirstAsync(Expression<Func<TEntity, bool>>? predicate = null);
 
-        Task<TDto?> QueryFirstAsync(Expression<Func<TEntity, bool>>? predicate = null,
+        Task<TEntity?> QueryFirstAsync(Expression<Func<TEntity, bool>>? predicate = null,
             params Expression<Func<TEntity, object>>[]? includes);
-
-        Task UpdateAsync(TEntity entity);
     }
 }

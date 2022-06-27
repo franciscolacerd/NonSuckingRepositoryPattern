@@ -15,11 +15,22 @@ namespace NSRP.Persistence.Repositories.Common
             _dbContext = dbContext;
         }
 
-        public int Skip(int page, int pageSize) { return (page - 1) * pageSize; }
+        public IQueryable<TEntity> SetFiltersToQuery(Expression<Func<TEntity, bool>>? predicate)
+        {
+            return SetFiltersToQuery(predicate, null);
+        }
 
         public IQueryable<TEntity> SetFiltersToQuery(
              Expression<Func<TEntity, bool>>? predicate,
              Expression<Func<TEntity, object>>[]? includes)
+        {
+            return SetFiltersToQuery(predicate, includes, null);
+        }
+
+        public IQueryable<TEntity> SetFiltersToQuery(
+             Expression<Func<TEntity, bool>>? predicate,
+             Expression<Func<TEntity, object>>[]? includes,
+             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null)
         {
             var dbSet = _dbContext.Set<TEntity>();
 
@@ -30,6 +41,9 @@ namespace NSRP.Persistence.Repositories.Common
 
             if (includes != null)
                 _query = includes.Aggregate(_query, (current, include) => current.Include(include));
+
+            if (orderBy != null)
+                return orderBy(_query);
 
             return _query;
         }

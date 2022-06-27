@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
+using NSRP.Application.Models.Pagination;
 using System.Linq.Expressions;
 
 namespace NSRP.Application.Extensions
@@ -53,6 +56,26 @@ namespace NSRP.Application.Extensions
         OrderByDescending<TSource>(this IQueryable<TSource> source, string propertyName)
         {
             return source.OrderByDescending(GetExpression<TSource>(propertyName));
+        }
+
+        public static async Task<PagedResult<U>> GetPagedAsync<T, U>(this IQueryable<T> query,
+                                         int page, int pageSize, IMapper mapper) where U : class
+        {
+            var result = new PagedResult<U>();
+            result.CurrentPage = page;
+            result.PageSize = pageSize;
+            result.RowCount = query.Count();
+
+            var pageCount = (double)result.RowCount / pageSize;
+            result.PageCount = (int)Math.Ceiling(pageCount);
+
+            var skip = (page - 1) * pageSize;
+            result.Results = await query.Skip(skip)
+                                  .Take(pageSize)
+                                  .ProjectTo<U>(mapper.ConfigurationProvider)
+                                  .ToListAsync();
+
+            return result;
         }
     }
 }
